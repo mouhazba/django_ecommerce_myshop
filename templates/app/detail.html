@@ -1,0 +1,13 @@
+{% extends '_base.html' %}
+{% block title %}Detail{% endblock title %}
+{% block content %}
+<h1>Detail</h1>
+    {% if detail_product %}
+        <p>Name of product: <strong>{{ detail_product.name}}</strong></p>
+        <p>Price of product: <strong>{{ detail_product.price}}</strong></p>
+        <p>Stock of product: <strong>{{ detail_product.stock}}</strong></p>
+        <p><img src="{{ detail_product.image.url }}" alt="detail_product.name"></p>
+    {% else %}
+        <p>Url error</p>
+    {% endif %}
+{% endblock content %}

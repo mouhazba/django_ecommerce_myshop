@@ -1,0 +1,14 @@
+{% extends '_base.html' %}
+{% block title %}Home{% endblock title %}
+{% block content %}
+<h1>Homepage</h1>
+    {% if list_products %}
+        {% for p in list_products %}
+             <p>Name of product: <strong>{{ p.name}}</strong></p>
+             <p><img src="{{ p.image.url }}" alt="p.name"></p>
+             <p><a href=" {{ p.get_absolute_url }} ">Detail</a></p>
+        {% endfor %}
+    {% else %}
+        <p>Base de donnees empty</p>
+    {% endif %}
+{% endblock content %}
