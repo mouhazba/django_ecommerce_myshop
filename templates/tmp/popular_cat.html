@@ -1,0 +1,109 @@
+<section id="content">
+
+
+			<div class="content-wrap">
+
+				<div class="container clearfix">
+
+					<!-- Shop Categories
+					============================================= -->
+					<div class="fancy-title title-dotted-border title-center mb-4">
+						<h4>Shop popular categories</h4>
+					</div>
+					<div class="row shop-categories clearfix">
+						{% for p in popular %}
+						<div class="row">
+							<div class="col-lg-7 rounder " data-animate="fadeInLeft">
+								<a href="{% url 'detail' p.slug %}" style="background: url('{{ p.image.url }}') no-repeat right center; background-size: cover;">
+									<div class="vertical-middle dark center">
+									<!--	<div class="heading-block nomargin noborder">
+											<h3 class="nott t600 ls0" data-animate="fadeInUp">
+											{{ p.name }}
+											</h3>
+										</div> -->
+									</div>
+								</a>
+							</div>
+						    <div class="col-lg-5 border rounder" data-animate="fadeInRight">
+							<!--<h3 class="text-center" data-animate="fadeInUp">{{p.name}}</h3>
+							<h3 class="text-center" data-animate="fadeInUp">{{p.description}}</h3>-->
+								<h3 class="nobottommargin" style="font-size: 35px;">Great Team Work.</h3>
+								<h3 class="t200 ls4 lowercase" style="font-size: 15px; color: #999;">
+									Designed by Semicolonweb
+								</h3>
+								<p>Uniquely plagiarize dynamic convergence
+									after equity invested experiences. Holisticly repurpose installed
+									after equity invested experiences. Holisticly repurpose installed
+								</p>
+						   </div>
+						</div>
+					<!--	<div class="col-lg-4" data-animate="fadeInUp">
+							<a href="#" style="background: url('{{p.image.url}}') no-repeat center center; background-size: cover;">
+								<div class="vertical-middle dark center">
+									<div class="heading-block nomargin noborder">
+										<h3 class="nott t600 ls0" data-animate="fadeInUp">{{p.name}}</h3>
+									</div>
+								</div>
+							</a>
+						</div>-->
+						{% endfor %}
+					</div>
+
+					<!-- Featured Carousel
+					============================================= -->
+					<div class="fancy-title title-dotted-border mt-4 mb-1 title-center">
+						<h4>Weekly Featured Items</h4>
+					</div>
+
+			    </div>
+
+				<!-- New Arrival Section
+				============================================= -->
+
+			</div>
+		  </section><!-- #content end -->
+
+
+
+	<div class="section topmargin-lg parallax" style="padding: 80px 0 60px; background-image: url('demos/course/images/icon-pattern.jpg'); background-size: auto; background-repeat: repeat"  data-bottom-top="background-position:0px 100px;" data-top-bottom="background-position:0px -500px;">
+
+					<!-- Wave Shape Divider
+					============================================= -->
+					<div class="wave-top" style="position: absolute; top: 0; left: 0; width: 100%; background-image: url('images/shape-dividers/wave-3.svg'); height: 12px; z-index: 2; background-repeat: repeat-x;"></div>
+
+					<div class="container">
+
+						<div class="heading-block nobottomborder mb-5 center">
+							<h3>Most Popular Courses</h3>
+							<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla natus mollitia ipsum. Voluptatibus, perspiciatis placeat.</span>
+						</div>
+
+						<div class="clear"></div>
+
+						<div class="row mt-2">
+
+							<!-- Course 1
+							============================================= -->
+							<div class="col-md-4 mb-5">
+								<div class="card course-card hover-effect noborder">
+									<a href="#"><img class="card-img-top" src="demos/course/images/courses/1.jpg" alt="Card image cap"></a>
+									<div class="card-body">
+										<h4 class="card-title t700 mb-2"><a href="#">Spanish Language Learning For Absolute Beginners</a></h4>
+										<p class="mb-2 card-title-sub uppercase t400 ls1"><a href="#" class="text-black-50">Language</a></p>
+										<div class="rating-stars mb-2"><i class="icon-star3"></i><i class="icon-star3"></i><i class="icon-star3"></i><i class="icon-star3"></i><i class="icon-star-half-full"></i> <span>4.7</span></div>
+										<p class="card-text text-black-50 mb-1">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+									</div>
+									<div class="card-footer py-3 d-flex justify-content-between align-items-center bg-white text-muted">
+										<div class="badge alert-primary">$19.99</div>
+										<a href="#" class="text-dark position-relative"><i class="icon-line2-user"></i> <span class="author-number">1</span></a>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+					<!-- Wave Shape Divider - Bottom
+					============================================= -->
+					<div class="wave-bottom" style="position: absolute; top: auto; bottom: 0; left: 0; width: 100%; background-image: url('images/shape-dividers/wave-3.svg'); height: 12px; z-index: 2; background-repeat: repeat-x; transform: rotate(180deg);"></div>
+				</div>

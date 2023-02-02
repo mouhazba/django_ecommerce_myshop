@@ -1,6 +1,7 @@
 from django.db import models
 from django.template.defaultfilters import slugify
 from django.urls import reverse
+from django.utils import timezone
 
 from src.settings import AUTH_USER_MODEL
 
@@ -15,7 +16,7 @@ class Product(models.Model):
     image = models.ImageField(upload_to='images')
 
     def __str__(self):
-        return f"{self.name}"
+        return self.name
 
     def get_absolute_url(self):
         return reverse('detail', kwargs={'slug': self.slug})
@@ -36,11 +37,44 @@ class Order(models.Model):
     def __str__(self):
         return f"{self.product.name} ({self.quantity})"
 
+    @property
+    def get_cart_cost(self):
+        total = self.product.price * self.quantity
+        return total
 
-class Card(models.Model):
-    user = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE)
+
+class Cart(models.Model):
+    user = models.OneToOneField(AUTH_USER_MODEL, on_delete=models.CASCADE)
     orders = models.ManyToManyField(Order)
 
     def __str__(self):
-        return self.user.username
+        return f"{self.user.username}"
 
+
+'''  
+    def delete(self, *args, **kwargs):
+        self.orders.clear()
+        super().delete(*args, **kwargs)
+
+    def delete_bis(self, *args, **kwargs):
+        for order in self.orders.all():
+            order.ordered = True
+            order.ordered_date = timezone.now()
+            order.save()
+        self.orders.clear()
+        super().delete(*args, **kwargs)
+        
+    #transaction_id = models.CharField(max_length=100, null=True)
+   
+class ShippingAddress(models.Model):
+    customer = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True)
+    order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True)
+    address = models.CharField(max_length=200, null=False)
+    city = models.CharField(max_length=200, null=False)
+    state = models.CharField(max_length=200, null=False)
+    zipcode = models.CharField(max_length=200, null=False)
+    date_added = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.customer
+'''

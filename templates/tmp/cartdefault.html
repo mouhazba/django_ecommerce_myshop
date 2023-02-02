@@ -1,0 +1,71 @@
+{% extends '_base.html' %}
+{% load static %}
+{% block content %}
+{% if orders %}
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="box-element">
+
+				<a  class="btn btn-outline-dark" href="{% url 'home' %}">&#x2190; Continue Shopping</a>
+
+				<br>
+				<br>
+				<table class="table">
+					{% if user.cart %}
+					<tr>
+						<th><h5>Items: <strong>{{user.cart.orders.count}}</strong></h5></th>
+						<th><h5>Total:<strong> ${{total}}</strong></h5></th>
+						<th>
+							<h5>
+							<a  style="float:right; margin:5px;" class="btn btn-danger"
+								href="{% url 'delete-cart' %}">Cleat cart
+							</a>
+							</h5>
+						</th>
+						<th>
+							<a  style="float:right; margin:5px;" class="btn btn-success" href="#">Checkout</a>
+						</th>
+					</tr>
+					{% endif %}
+				</table>
+
+			</div>
+			<br>
+
+
+			<div class="box-element">
+
+				<div class="cart-row">
+					<div style="flex:2"></div>
+					<div style="flex:2" class="mt-2"><strong>Item</strong></div>
+					<div style="flex:1" class="mt-2"><strong>Price</strong></div>
+					<div style="flex:1" class="mt-2"><strong>Stock</strong></div>
+					<div style="flex:1" class="mt-2"><strong>Quantity</strong></div>
+					<div style="flex:1" class="mt-2"><strong>Total</strong></div>
+				</div>
+                {% for p in orders %}
+				<div class="cart-row">
+					<div style="flex:2" class="mb-1"><img class="row-image" src="{{ p.product.image.url }}"></div>
+					<div style="flex:2" class="mt-3"><p>{{ p.product.name }}</p></div>
+					<div style="flex:1" class="mt-3"><p>${{p.product.price|floatformat:2}}</p></div>
+					<div style="flex:1" class="mt-3"><p>${{p.product.stock}}</p></div>
+					<div style="flex:1">
+						<p class="quantity">{{p.quantity}}</p>
+						<div class="quantity">
+							<a href=" {% url 'add-to-cart' p.product.slug %} "><img  class="chg-quantity" src="{% static 'images/arrow-up.png' %}"></a>
+								<a href="{% url 'reduce-quantity-cart' p.product.slug %} "><img class="chg-quantity" src="{% static  'images/arrow-down.png' %}"></a>
+						</div>
+					</div>
+					<div style="flex:1" class="mt-3"><p>${{p.get_cart_cost}}</p></div>
+				</div>
+				{% endfor %}
+			</div>
+
+
+		</div>
+
+	</div>
+{% else %}
+	<p>Cart empty</p>
+{% endif %}
+{% endblock content %}

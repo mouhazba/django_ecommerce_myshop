@@ -1,14 +1,468 @@
 {% extends '_base.html' %}
+{% load static %}
 {% block title %}Home{% endblock title %}
 {% block content %}
-<h1>Homepage</h1>
-    {% if list_products %}
-        {% for p in list_products %}
-             <p>Name of product: <strong>{{ p.name}}</strong></p>
-             <p><img src="{{ p.image.url }}" alt="p.name"></p>
-             <p><a href=" {{ p.get_absolute_url }} ">Detail</a></p>
-        {% endfor %}
-    {% else %}
-        <p>Base de donnees empty</p>
-    {% endif %}
+	<!-- Slider
+		============================================= -->
+		<section id="slider" class="slider-element swiper_wrapper clearfix" data-autoplay="6000" data-speed="800" data-loop="true" data-grab="true" data-effect="fade" data-arrow="false" style="height: 500px;">
+			<div class="swiper-container swiper-parent">
+				<div class="swiper-wrapper">
+					{% for p in popular %}
+					{% if p.name == 'produit-1' %}
+					<div class="swiper-slide dark" style="background-image: url('{{ p.image.url }}');">
+						<div class="container clearfix">
+							<div class="slider-caption slider-caption-center" data-animate="fadeInUp">
+								<h2 class="bottommargin-sm text-white">Winter</h2>
+								<!--<a href="#" class="button bg-white text-dark button-light">Shop Menswear</a>-->
+							</div>
+						</div>
+					</div>
+					<div class="swiper-slide dark" style="background: url('{% static 'demos/course/images/courses/2.jpg' %}') no-repeat center 20%; background-size: cover">
+						<div class="container clearfix">
+							<div class="slider-caption slider-caption-center" data-animate="fadeInUp">
+							<!--	<div class="h5 mb-2 font-secondary">Summer Collections</div> -->
+								<h2 class="bottommargin-sm text-white">Sale</h2>
+								<!--<a href="#" class="button bg-white text-dark button-light">Shop Beachwear</a>-->
+							</div>
+						</div>
+					</div>
+					<div class="swiper-slide dark" style="background: url('{% static 'demos/course/images/courses/1.jpg' %}') no-repeat center 40%; background-size: cover">
+						<div class="container clearfix">
+							<div class="slider-caption slider-caption-center" data-animate="fadeInUp">
+								<h2 class="bottommargin-sm text-white">New Arrivals</h2>
+							</div>
+						</div>
+					</div>
+					{% endif %}
+					{% endfor %}
+				</div>
+				<div class="swiper-pagination"></div>
+			</div>
+		</section><!-- #Slider End -->
+		<!-- end section slider -->
+
+		<!-- Content
+		============================================= -->
+		<section id="content">
+
+			<div class="content-wrap">
+
+				<div class="container clearfix">
+
+					<!-- Shop Categories
+					============================================= -->
+					<div class="fancy-title title-dotted-border title-center mb-4">
+						<h4>Shop popular categories</h4>
+					</div>
+					<div class="row shop-categories clearfix">
+						{% for p in popular %}
+						{% if p.name == 'produit-1' %}
+							<div class="col-lg-7" data-animate="fadeInLeft">
+								<a href="{% url 'detail' p.slug %}" style="background: url('{{ p.image.url }}') no-repeat right center; background-size: cover;">
+									<div class="vertical-middle dark center">
+										<div class="heading-block nomargin noborder">
+										</div>
+									</div>
+								</a>
+							</div>
+						{% elif p.name == 'produit-2' %}
+							<div class="col-lg-5" data-animate="fadeInRight">
+								<a href="{% url 'detail' p.slug %}" style="background: url('{{ p.image.url }}') no-repeat center right; background-size: cover;">
+									<div class="vertical-middle dark center" data-animate="fadeInRight">
+										<div class="heading-block nomargin noborder">
+											<h3 class="nott t600 ls0" data-animate="fadeInUp">
+											voir l'article
+											</h3>
+										</div>
+									</div>
+								</a>
+							</div>
+						{% else %}
+						<div class="col-lg-4" data-animate="fadeInUp">
+							<a href="{% url 'detail' p.slug %}" style="background: url('{{p.image.url}}') no-repeat center center; background-size: cover;">
+								<div class="vertical-middle dark center">
+									<div class="heading-block nomargin noborder">
+									</div>
+								</div>
+							</a>
+						</div>
+						{% endif %}
+						{% endfor %}
+					</div>
+
+					<!-- Featured Carousel
+					=============================================
+					<div class="fancy-title title-dotted-border mt-4 mb-1 title-center">
+						<h4>Weekly Featured Items</h4>
+					</div> -->
+
+				</div>
+
+				<!-- New Arrival Section
+				============================================= -->
+				<!-- Wave Shape Divider
+				============================================= -->
+				<div class="wave-bottom" style="position: absolute; top: -12px; left: 0; width: 100%; background-image: url('{% static 'demos/course/images/wave-3.svg' %}'); height: 12px; z-index: 2; background-repeat: repeat-x; transform: rotate(180deg);"></div>
+				<!--end  divider -->
+
+				<!-- Section Courses
+				============================================= -->
+				<div class="section topmargin-lg parallax" style="padding: 80px 0 60px; background-image: url('{% static 'demos/course/images/icon-pattern.jpg' %}'); background-size: auto; background-repeat: repeat"  data-bottom-top="background-position:0px 100px;" data-top-bottom="background-position:0px -500px;">
+
+					<!-- Wave Shape Divider
+					============================================= -->
+					<div class="wave-top" style="position: absolute; top: 0; left: 0; width: 100%; background-image: url('{% static 'demos/course/images/wave-3.svg' %}'); height: 12px; z-index: 2; background-repeat: repeat-x;"></div>
+
+					<div class="container">
+
+						<div class="heading-block nobottomborder mb-5 center">
+							<h3>Most Popular Courses</h3>
+							<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla natus mollitia ipsum. Voluptatibus, perspiciatis placeat.</span>
+						</div>
+
+						<div class="clear"></div>
+
+						<div class="row mt-2">
+
+							<!-- Course 1
+							============================================= -->
+							<div class="col-md-4 mb-5">
+								<div class="card course-card hover-effect noborder">
+									<a href="#"><img class="card-img-top" src="{% static 'demos/course/images/courses/1.jpg' %}" alt="Card image cap"></a>
+									<div class="card-body">
+										<h4 class="card-title t700 mb-2"><a href="#">Spanish Language Learning For Absolute Beginners</a></h4>
+										<p class="mb-2 card-title-sub uppercase t400 ls1"><a href="#" class="text-black-50">Language</a></p>
+										<div class="rating-stars mb-2"><i class="icon-star3"></i><i class="icon-star3"></i><i class="icon-star3"></i><i class="icon-star3"></i><i class="icon-star-half-full"></i> <span>4.7</span></div>
+										<p class="card-text text-black-50 mb-1">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+									</div>
+									<div class="card-footer py-3 d-flex justify-content-between align-items-center bg-white text-muted">
+										<div class="badge alert-primary">$19.99</div>
+										<a href="#" class="text-dark position-relative badge alert-secondary">view</a>
+									</div>
+								</div>
+							</div>
+
+							<!-- Course 2
+							============================================= -->
+							<div class="col-md-4 mb-5">
+								<div class="card course-card hover-effect noborder">
+									<a href="#"><img class="card-img-top" src="{% static 'demos/course/images/courses/2.jpg' %}" alt="Card image cap"></a>
+									<div class="card-body">
+										<h4 class="card-title t700 mb-2"><a href="#">Music Theory for Electronic Producers - The Complete Course!</a></h4>
+										<p class="mb-2 card-title-sub uppercase t400 ls1"><a href="#" class="text-black-50">Music</a></p>
+										<div class="rating-stars mb-2"><i class="icon-star3"></i><i class="icon-star3"></i><i class="icon-star3"></i><i class="icon-star3"></i><i class="icon-star3"></i> <span>4.9</span></div>
+										<p class="card-text text-black-50 mb-1">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+									</div>
+									<div class="card-footer py-3 d-flex justify-content-between align-items-center bg-white text-muted">
+										<div class="badge alert-primary">$14.99</div>
+										<a href="#" class="text-dark position-relative badge alert-secondary">view</a>
+									</div>
+								</div>
+							</div>
+
+							<!-- Course 3
+							============================================= -->
+							<div class="col-md-4 mb-5">
+								<div class="card course-card hover-effect noborder">
+									<a href="#"><img class="card-img-top" src="{% static 'demos/course/images/courses/3.jpg' %}" alt="Card image cap"></a>
+									<div class="card-body">
+										<h4 class="card-title t700 mb-2"><a href="#">Ultimate Photoshop Training: From Beginner to Pro</a></h4>
+										<p class="mb-2 card-title-sub uppercase t400 ls1"><a href="#" class="text-black-50">Design Tools</a></p>
+										<div class="rating-stars mb-2"><i class="icon-star3"></i><i class="icon-star3"></i><i class="icon-star3"></i><i class="icon-star3"></i><i class="icon-star-half"></i> <span>4.4</span></div>
+										<p class="card-text text-black-50 mb-1">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+									</div>
+									<div class="card-footer py-3 d-flex justify-content-between align-items-center bg-white text-muted">
+										<div class="badge alert-primary">$16.99</div>
+										<a href="#" class="text-dark position-relative badge alert-secondary">view</a>
+									</div>
+								</div>
+							</div>
+
+							<!-- Course 4
+							============================================= -->
+							<div class="col-md-4 mb-5">
+								<div class="card course-card hover-effect noborder">
+									<a href="#"><img class="card-img-top" src="{% static 'demos/course/images/courses/4.jpg' %}" alt="Card image cap"></a>
+									<div class="card-body">
+										<h4 class="card-title t700 mb-2"><a href="#">Blockchain Advanced Level: Uses Beyond Bitcoin 2018</a></h4>
+										<p class="mb-2 card-title-sub uppercase t400 ls1"><a href="#" class="text-black-50">Business</a></p>
+										<div class="rating-stars mb-2"><i class="icon-star3"></i><i class="icon-star3"></i><i class="icon-star3"></i><i class="icon-star-half"></i><i class="icon-star-empty"></i> <span>3.7</span></div>
+										<p class="card-text text-black-50 mb-1">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+									</div>
+									<div class="card-footer py-3 d-flex justify-content-between align-items-center bg-white text-muted">
+										<div class="badge alert-primary">$19.99</div>
+										<a href="#" class="text-dark position-relative"><i class="icon-line2-user"></i> <span class="author-number">1</span></a>
+									</div>
+								</div>
+							</div>
+
+							<!-- Course 5
+							============================================= -->
+							<div class="col-md-4 mb-5">
+								<div class="card course-card hover-effect noborder">
+									<a href="#"><img class="card-img-top" src="{% static 'demos/course/images/courses/5.jpg' %}" alt="Card image cap"></a>
+									<div class="card-body">
+										<h4 class="card-title t700 mb-2"><a href="#">Cognitive Behavioural Therapy (CBT) Practitioner Certificate</a></h4>
+										<p class="mb-2 card-title-sub uppercase t400 ls1"><a href="#" class="text-black-50">Health & Fitness</a></p>
+										<div class="rating-stars mb-2"><i class="icon-star3"></i><i class="icon-star3"></i><i class="icon-star3"></i><i class="icon-star3"></i><i class="icon-empty"></i> <span>4.1</span></div>
+										<p class="card-text text-black-50 mb-1">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+									</div>
+									<div class="card-footer py-3 d-flex justify-content-between align-items-center bg-white text-muted">
+										<div class="badge alert-primary">$23.99</div>
+										<a href="#" class="text-dark position-relative"><i class="icon-line2-user"></i> <span class="author-number">1</span></a>
+									</div>
+								</div>
+							</div>
+
+							<!-- Course 6
+							============================================= -->
+							<div class="col-md-4 mb-5">
+								<div class="card course-card hover-effect noborder">
+									<a href="#"><img class="card-img-top" src="{% static 'demos/course/images/courses/6.jpg' %}" alt="Card image cap"></a>
+									<div class="card-body">
+										<h4 class="card-title t700 mb-2"><a href="#">Masterclass: Start Your Food Business 7 courses in 1</a></h4>
+										<p class="mb-2 card-title-sub uppercase t400 ls1"><a href="#" class="text-black-50">Food Recipes</a></p>
+										<div class="rating-stars mb-2"><i class="icon-star3"></i><i class="icon-star3"></i><i class="icon-star3"></i><i class="icon-star3"></i><i class="icon-star-half"></i> <span>4.4</span></div>
+										<p class="card-text text-black-50 mb-1">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+									</div>
+									<div class="card-footer py-3 d-flex justify-content-between align-items-center bg-white text-muted">
+										<div class="badge alert-primary">$21.99</div>
+										<a href="#" class="text-dark position-relative"><i class="icon-line2-user"></i> <span class="author-number">1</span></a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Wave Shape Divider - Bottom
+					============================================= -->
+					<div class="wave-bottom" style="position: absolute; top: auto; bottom: 0; left: 0; width: 100%; background-image: url('{% static 'demos/course/images/wave-3.svg' %}'); height: 12px; z-index: 2; background-repeat: repeat-x; transform: rotate(180deg);"></div>
+				</div>
+
+				<!--end  section course -->
+
+					<!-- materiels Section
+				============================================= -->
+				<div class="container clearfix">
+					<div class="jumbotron p-4 p-md-5 dark position-relative rounded" style="background: url('{% static 'images/hero-slider/2.jpg' %}') center center / cover;">
+						<div class="col-md-6 px-0 py-3" style="z-index: 1">
+							<strong class="d-inline-block mb-2 t600 uppercase ls2">World</strong>
+							<h2 class="t600 mb-2">Lexus GS Luxury Tuning with Vossen</h2>
+							<div class="mb-3">Nov 12, 2018</div>
+							<p class="my-4 h6 text-white-50">Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.</p>
+							<a href="#" class="button button-rounded button-3d button-white button-light nott ls0 nomargin">
+								Continue reading...</a>
+						</div>
+
+					</div>
+
+
+					<!-- flip-card -->
+					<div class="row grid-container" data-layout="masonry" style="overflow: visible">
+						<div class="col-lg-4 mb-4">
+							<div class="flip-card text-center">
+								<div class="flip-card-front dark"
+									 style="background-image: url('{% static 'demos/course/images/courses/1.jpg' %}')">
+								<!--	<div class="flip-card-inner">
+										<div class="card nobg noborder text-center">
+											<div class="card-body">
+												<i class="icon-line2-camera h1"></i>
+												<h3 class="card-title">Special title treatment</h3>
+												<p class="card-text t400">With supporting text below as a natural lead-in to additional content.</p>
+											</div>
+										</div>
+									</div>  -->
+								</div>
+								<div class="flip-card-back bg-danger no-after">
+									<div class="flip-card-inner">
+										<p class="mb-2 text-white">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias cum repellat velit.</p>
+										<button type="button" class="btn btn-outline-light mt-2">View Details</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4 mb-4">
+							<div class="flip-card text-center">
+								<div class="flip-card-front dark"
+									 style="background-image: url('{% static 'demos/course/images/courses/1.jpg' %}')">
+									<!--<div class="flip-card-inner">
+										<div class="card nobg noborder text-center">
+											<div class="card-body">
+												<i class="icon-line2-camera h1"></i>
+												<h3 class="card-title">Special title treatment</h3>
+												<p class="card-text t400">With supporting text below as a natural lead-in to additional content.</p>
+											</div>
+										</div>
+									</div>-->
+								</div>
+								<div class="flip-card-back bg-danger no-after">
+									<div class="flip-card-inner" >
+										<p class="mb-2 text-white">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias cum repellat velit.</p>
+										<button type="button" class="btn btn-outline-light mt-2">View Detail</button>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-lg-4 mb-4">
+							<div class="flip-card text-center">
+								<div class="flip-card-front dark" data-height-xl="505"
+									 style="background-image: url('{% static 'demos/course/images/courses/1.jpg' %}');">
+							<!--		<div class="flip-card-inner">
+										<div class="card nobg noborder text-center">
+											<div class="card-body">
+												<i class="icon-line2-briefcase h1"></i>
+												<h3 class="card-title">Special title treatment</h3>
+												<p class="card-text t400">With supporting text below as a natural lead-in to additional content.</p>
+											</div>
+										</div>
+									</div>  -->
+								</div>
+								<div class="flip-card-back" data-height-xl="505"
+									 style="background-image: url('');">
+									<div class="flip-card-inner">
+										<p class="mb-2 text-white">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias cum repellat velit.</p>
+										<button type="button" class="btn btn-outline-light mt-2">View Details</button>
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="col-lg-4 mb-4">
+							<div class="flip-card text-center top-to-bottom">
+								<div class="flip-card-front bg-info dark" data-height-xl="200"
+								style="background-image: url('{% static 'demos/course/images/courses/1.jpg' %}');">
+									<!--<div class="flip-card-inner">
+										<div class="card nobg noborder text-center">
+											<div class="card-body">
+												<i class="icon-line2-check h1"></i>
+												<h3 class="card-title">Special title treatment</h3>
+											</div>
+										</div>
+									</div>-->
+								</div>
+								<div class="flip-card-back" data-height-xl="200"
+									 style="background-image: url('{% static 'demos/course/images/courses/1.jpg' %}');">
+									<!--<div class="flip-card-inner">
+										<p class="mb-2 text-white">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias cum repellat velit.</p>
+										<button type="button" class="btn btn-outline-light mt-2">View Details</button>
+									</div> -->
+									<div class="flip-card-inner">
+										<p class="mb-2 text-white">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias cum repellat velit.</p>
+										<button type="button" class="btn btn-outline-light mt-2">View Details</button>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-lg-4 mb-4">
+							<div class="flip-card top-to-bottom">
+								<div class="flip-card-front dark" data-height-xl="200"
+									 style="background-image: url('{% static 'demos/course/images/courses/1.jpg' %}');">
+								<!--	<div class="flip-card-inner">
+										<div class="card nobg noborder">
+											<div class="card-body">
+												<h3 class="card-title mb-0">Beautiful Nature</h3>
+												<span class="font-italic">New Zealand</span>
+											</div>
+										</div>
+									</div> -->
+								</div>
+								<div class="flip-card-back" data-height-xl="200"
+									 style="background-image: url('{% static 'demos/course/images/courses/1.jpg' %}');">
+									<div class="flip-card-inner">
+										<p class="mb-2 text-white">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias cum repellat velit.</p>
+										<button type="button" class="btn btn-outline-light mt-2">View Details</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+			    </div>
+
+
+					<!-- end materials section -->
+			</div>
+
+
+
+		  </section><!-- #content end -->
+
+
+			<!-- footer
+		============================================= -->
+          <div class="clear"></div>
+
+          <footer id="footer" class="dark">
+
+			<!-- Copyrights
+			============================================= -->
+			<div id="copyrights">
+
+				<div class="container clearfix">
+
+					<div class="col_half">
+						Copyrights &copy; 2022 mouhazba developer applications web python-django.<br>
+						<div class="copyright-links"><a href="#">Terms of Use</a> / <a href="#">Privacy Policy</a></div>
+					</div>
+
+					<div class="col_half col_last tright">
+						<div class="fright clearfix">
+							<a href="#" class="social-icon si-small si-borderless si-facebook">
+								<i class="icon-facebook"></i>
+								<i class="icon-facebook"></i>
+							</a>
+
+							<a href="#" class="social-icon si-small si-borderless si-twitter">
+								<i class="icon-twitter"></i>
+								<i class="icon-twitter"></i>
+							</a>
+						<!--
+							<a href="#" class="social-icon si-small si-borderless si-gplus">
+								<i class="icon-gplus"></i>
+								<i class="icon-gplus"></i>
+							</a>
+
+							<a href="#" class="social-icon si-small si-borderless si-pinterest">
+								<i class="icon-pinterest"></i>
+								<i class="icon-pinterest"></i>
+							</a>
+
+							<a href="#" class="social-icon si-small si-borderless si-vimeo">
+								<i class="icon-vimeo"></i>
+								<i class="icon-vimeo"></i>
+							</a>
+
+							<a href="#" class="social-icon si-small si-borderless si-github">
+								<i class="icon-github"></i>
+								<i class="icon-github"></i>
+							</a>
+
+							<a href="#" class="social-icon si-small si-borderless si-yahoo">
+								<i class="icon-yahoo"></i>
+								<i class="icon-yahoo"></i>
+							</a> -->
+
+							<a href="#" class="social-icon si-small si-borderless si-linkedin">
+								<i class="icon-linkedin"></i>
+								<i class="icon-linkedin"></i>
+							</a>
+						</div>
+
+						<div class="clear"></div>
+
+						<i class="icon-envelope2"></i> info@user.com <span class="middot">&middot;</span> <i class="icon-headphones"></i> +91-11-6541-6369 <!-- <span class="middot">&middot;</span> <i class="icon-skype2"></i> CanvasOnSkype -->
+					</div>
+
+				</div>
+
+			</div><!-- #copyrights end -->
+
+		</footer>
+
+		<!-- end footer -->
+
 {% endblock content %}

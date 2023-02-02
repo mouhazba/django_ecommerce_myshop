@@ -1,44 +1,228 @@
-{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html dir="ltr" lang="en-US">
+{% load static %}
+
 <head>
-  <title>{% block title %}Shop{% endblock title %}</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
-  <link rel="stylesheet" href="{% static 'css/base.css' %}">
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="author" content="SemiColonWeb" />
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<!-- Stylesheets
+	============================================= -->
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700%7CMontserrat:300,400,500,600,700%7CMerriweather:300,400,300i,400i" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="{% static 'css/style/bootstrap.css' %}" type="text/css" />
+	<link rel="stylesheet" href="{% static 'css/style/dark.css' %}" type="text/css" />
+	<link rel="stylesheet" href="{% static 'css/style/swiper.css' %}" type="text/css" />
+	<link rel="stylesheet" href="{% static 'css/style/course.css' %}" type="text/css" />
+    <link rel="stylesheet" href="{% static 'css/style/style.css' %}" type="text/css" />
+    <link rel="stylesheet" href="{% static 'css/style/shipping.css' %}" type="text/css" />
+
+	<!-- shop Demo Specific Stylesheet -->
+	<link rel="stylesheet" href="{% static 'demos/shop/shop.css' %}" type="text/css" />
+	<link rel="stylesheet" href="{% static 'demos/shop/css/fonts.css' %}" type="text/css" />
+	<!-- / -->
+
+	<!-- course Demo Specific Stylesheet -->
+
+	<link rel="stylesheet" href="{% static 'demos/course/css/fonts.css' %}" type="text/css" />
+
+	<link rel="stylesheet" href="{% static 'css/style/font-icons.css' %}" type="text/css" />
+	<link rel="stylesheet" href="{% static 'css/style/animate.css' %}" type="text/css" />
+	<link rel="stylesheet" href="{% static 'css/style/magnific-popup.css' %}" type="text/css" />
+
+	<link rel="stylesheet" href="{% static 'css/style/responsive.css' %}" type="text/css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+	<!-- Course Demo Specific Stylesheet -->
+
+	<!-- / -->
+	<!-- Document Title
+	============================================= -->
+	<title>Ecom</title>
+
 </head>
-<body>
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="{% url 'home' %}">My Shop</a>
-    </div>
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="{% url 'home' %}">Home</a></li>
-      <li><a href="{% url 'about' %}">About</a></li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-      {% if user.is_authenticated %}
-      <li><a href="{% url 'account_logout' %}"><span class="glyphicon glyphicon-user"></span>Logout</a></li>
-      {% else %}
-      <li><a href="{% url 'account_signup' %}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-      <li><a href="{% url 'account_login' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      {% endif %}
-    </ul>
-  </div>
-</nav>
+
+<body class="stretched">
+
+	<!-- Document Wrapper
+	============================================= -->
+	<div id="wrapper" class="clearfix">
 
 
-{% block content %}
-<div class="container">
+		<!-- Top Bar
+		============================================= -->
+		<div id="top-bar" class="dark" style="background-color: #a3a5a7;">
 
-</div>
-{% endblock content %}
+			<div class="container clearfix">
+
+				<div class="row justify-content-between">
+
+
+					<div class="col-lg-7 d-none d-lg-flex justify-content-end">
+
+
+						<!-- Top Social
+						============================================= -->
+						<div id="top-social">
+							<ul>
+								<li><a href="#" class="si-facebook"><span class="ts-icon"><i class="icon-facebook"></i></span><span class="ts-text">Facebook</span></a></li>
+								<li><a href="#" class="si-instagram"><span class="ts-icon"><i class="icon-instagram2"></i></span><span class="ts-text">Instagram</span></a></li>
+								<li><a href="tel:+91.11.85412542" class="si-call"><span class="ts-icon"><i class="icon-call"></i></span><span class="ts-text">+91.11.85412542</span></a></li>
+								<li><a href="mailto:info@canvas.com" class="si-email3"><span class="ts-icon"><i class="icon-envelope-alt"></i></span><span class="ts-text">info@canvas.com</span></a></li>
+							</ul>
+						</div><!-- #top-social end -->
+
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+		<!-- Header
+		============================================= -->
+		<header id="header" class="full-header clearfix">
+			<div id="header-wrap">
+
+				<div class="container clearfix">
+
+					<div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
+
+					<!-- Logo
+					============================================= -->
+					<div id="logo">
+						<a href="{% url 'home' %}" class="standard-logo">
+							ENP
+							<!--<img src="{% static 'demos/shop/images/logo.png' %}" alt="Canvas Logo"> -->
+						</a>
+					</div><!-- #logo end -->
+
+					<!-- Primary Navigation
+					============================================= -->
+					<nav id="primary-menu" class="style-2 with-arrows">
+					<!--<nav id="primary-menu" class="not-dark">-->
+
+						<ul>
+							<li class="current aut"><a href="{% url 'home' %}"><div>Home</div></a></li>
+							<!-- Mega Menu
+							============================================= -->
+
+							<li><a href="#"><div>Categorie</div></a>
+								<div class="mega-menu-content style-2 clearfix">
+									<ul class="mega-menu-column col-lg-6">
+										<li class="mega-menu-title"><a href="#"><div>Catarpilar</div></a>
+											<ul>
+												<li><a href="#"><div>type 1</div></a></li>
+												<li><a href="#"><div>type 2</div></a></li>
+
+											</ul>
+										</li>
+									</ul>
+									<ul class="mega-menu-column col-lg-6">
+										<li class="mega-menu-title"><a href="#"><div>Autre</div></a>
+											<ul>
+												<li><a href="#"><div>type 1</div></a></li>
+												<li><a href="#"><div>Type 2</div></a></li>
+
+											</ul>
+										</li>
+									</ul>
+								</div>
+							</li><!-- .mega-menu end -->
+							<li><a href="{% url 'about' %}"><div>About US</div></a></li>
+						</ul>
+
+						<!-- Top Search
+						=============================================
+						<div id="top-search">
+							<a href="#" id="top-search-trigger"><i class="icon-line-search"></i><i class="icon-line-cross"></i></a>
+							<form action="search.html" method="get">
+								<input type="text" name="q" class="form-control" value="" placeholder="Type &amp; Hit Enter..">
+							</form>
+						</div> #top-search end -->
+
+						<!-- Top Cart
+						============================================= -->
+						<div id="top-cart">
+							{% if user.cart %}
+								<a href="{% url 'cart' %}"><i class="icon-line-bag"></i><span>{{ user.cart.orders.count }}</span></a>
+							{% else %}
+								<a href="{% url 'cart' %}" id=""><i class="icon-line-bag"></i><span>0</span></a>
+							{% endif %}
+						<!--	<div class="top-cart-content">
+								<div class="top-cart-title">
+									<h4 class="text-center">Shopping Cart</h4>
+								</div>
+								<div class="top-cart-items">
+									<div class="top-cart-item clearfix">
+										<div class="top-cart-item-image">
+											<a href="#"><img src="{% static 'demos/shop/images/items/featured/5.jpg' %}" alt="Blue Shoulder Bag" /></a>
+										</div>
+										<div class="top-cart-item-desc">
+											<a href="#" class="t400">White athletic shoe</a>
+											<span class="top-cart-item-price">$35.00</span>
+											<span class="top-cart-item-quantity t600">x 1</span>
+										</div>
+									</div>
+									<div class="top-cart-item clearfix">
+										<div class="top-cart-item-image">
+											<a href="#" class="t400"><img src="{% static 'demos/shop/images/items/featured/1.jpg' %}" alt="Leather Bag" /></a>
+										</div>
+										<div class="top-cart-item-desc">
+											<a href="#" class="t400">Round Neck Solid Light Blue Colour T-shirts</a>
+											<span class="top-cart-item-price">$12.49</span>
+											<span class="top-cart-item-quantity t600">x 2</span>
+										</div>
+									</div>
+								</div>
+								<div class="top-cart-action clearfix">
+									<span class="fleft top-checkout-price t600 text-dark">$59.98</span>
+									<button class="button button-dark button-small nomargin fright">View Cart</button>
+								</div>
+							</div>  -->
+						</div><!-- #top-cart end -->
+
+						<!-- Top Search
+						============================================= -->
+						<div id="top-account">
+							{% if user.is_authenticated %}
+								<a href="{% url 'account_logout' %}"><i class="icon-line2-user mr-1 position-relative" style="top: 1px;"></i><span class="d-none d-sm-inline-block font-primary t500">Logout</span></a>
+							{% else %}
+								<a href="{% url 'account_login' %}"><i class="icon-line2-user mr-1 position-relative" style="top: 1px;"></i><span class="d-none d-sm-inline-block font-primary t500">Login</span></a>
+							{% endif %}
+						</div><!-- #top-search end -->
+
+					</nav><!-- #primary-menu end -->
+
+				</div>
+
+			</div>
+
+		</header><!-- #header end -->
+		{% block content %}
+
+
+		{% endblock content %}
+	</div><!-- #wrapper end -->
+
+	<!-- Go To Top
+	============================================= -->
+	<div id="gotoTop" class="icon-line-arrow-up"></div>
+
+	<!-- External JavaScripts
+	============================================= -->
+	<script src="{% static 'js/jquery.js' %}"></script>
+	<script src="{% static 'js/plugins.js' %}"></script>
+
+	<!-- Footer Scripts
+	============================================= -->
+	<script src="{% static 'js/functions.js' %}"></script>
+
+	<!-- ADD-ONS JS FILES -->
+	<script>
+
+	</script>
 
 </body>
 </html>

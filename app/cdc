@@ -1,0 +1,97 @@
+ 'NAME': 'boutique',
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
+
+class:
+    Produits    => fait
+    Article     => fait
+    panier      => fait
+    User        => fait
+
+
+CRUD:
+    Ajouter un produit via administration     => fait
+    lire les produits                         => fait
+    ajouter un(des) article au panier         => fait
+    afficher le panier                        => fait
+    +/-  qty de l'article dans le panier      => fait
+    supprimer le panier                       => fait
+    supprimer un article du panier            => fait
+    gérer la (-) de qty de l'article:
+        1 on peut diminuer la qty tant que la => ?
+            quantité de l'article est >= 1
+
+
+
+
+
+<!--
+{% extends 'main.html' %}
+{% block title %}Home{% endblock title %}
+{% block content %}
+<h1>Homepage</h1>
+{% if user.cart %}
+      <p><a href="{%  url 'cart'  %}">Voir le panier ( {{ user.cart.orders.count }} )</a></p>
+ {% else %}
+ {% endif %}
+ <p><a href="{%  url 'cart'  %}">Voir le panier (0)</a></p>
+    {% endif %}
+{% if list_products %}
+    {% for p in list_products %}
+         <p>Name of product: <strong>{{ p.name }}</strong></p>
+         <p><img src="{{ p.image.url }}" alt="p.name"></p>
+         <p><a href=" {{ p.get_absolute_url }} ">Detail</a></p>
+<hr>
+    {% endfor %}
+{% else %}
+    <p>Base de donnees empty</p>
+{% endif %}
+
+{% endblock content %}
+
+
+
+        {% if user.is_authenticated %}
+        {% else %}
+        {% endif %}
+
+
+
+         if request.user.is_authenticated:
+        customer = request.user
+        order, created = Order.objects.get_or_create(customer=customer, complete=False)
+        items = order.orderitem_set.all()
+        cartItems = order.get_cart_items
+    else:
+
+
+
+                	<p><strong>{{p.name}}</strong></p>
+                <p>Name of product: <strong>{{ detail_product.name}}</strong></p>
+                <p>Price of product: <strong>{{ detail_product.price}}</strong></p>
+                <p>Stock of product: <strong>{{ detail_product.stock}}</strong></p>
+-->
+ 	<a href="{% url 'account_signup' %}"class="btn btn-warning">Signup or connect to add a cart</a>
+
+
+ total = 0
+    for i in cart_orders:
+        total += 1
+
+    if total:
+        print(total)
+        if order.quantity >= 1:
+            order.quantity -= 1
+            order.save()
+
+        if order.quantity == 0:
+            total -= 1
+            order.delete()
+
+    else:
+        user_cart.delete()
+
+
+        demo interior

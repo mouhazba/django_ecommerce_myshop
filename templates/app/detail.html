@@ -1,13 +1,50 @@
 {% extends '_base.html' %}
 {% block title %}Detail{% endblock title %}
+{% load static %}
 {% block content %}
-<h1>Detail</h1>
+
     {% if detail_product %}
-        <p>Name of product: <strong>{{ detail_product.name}}</strong></p>
-        <p>Price of product: <strong>{{ detail_product.price}}</strong></p>
-        <p>Stock of product: <strong>{{ detail_product.stock}}</strong></p>
-        <p><img src="{{ detail_product.image.url }}" alt="detail_product.name"></p>
-    {% else %}
-        <p>Url error</p>
+   
+    <div class="container" style="margin-top: 120px;">
+        <div class="row">
+        <div class="col-lg-6">
+            <img class="" width="100%" height="290"  src="{{ detail_product.image.url }}" alt="{{detail_product.name}}">
+		</div>
+
+        <div class="col-lg-6">
+            <div class="product-desc">
+                    <div class="product-title"><h3>Checked Short Dress</h3></div>
+                    <div class="product-price"><!--<del>$24.99</del>--> <ins>$12.49</ins></div>
+                   <!-- <div class="product-rating">
+                        <i class="icon-star3"></i>
+                        <i class="icon-star3"></i>
+                        <i class="icon-star3"></i>
+                        <i class="icon-star3"></i>
+                        <i class="icon-star-half-full"></i>
+                    </div> -->
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                        Accusamus, sit, exercitationem, consequuntur, assumenda iusto
+
+                    </p>
+                    <ul class="iconlist">
+                        <li><i class="icon-caret-right"></i> Dynamic Color Options</li>
+                        <li><i class="icon-caret-right"></i> Lots of Size Options</li>
+
+                    </ul>
+
+                    {% if user.is_authenticated %}
+                         <a href=" {% url 'add-to-cart' detail_product.slug %} "
+                       class="btn-lg btn-block btn-success center">
+                        <i class="icon-shopping-cart"></i> Add to cart</a>
+                    {% else %}
+                          <a href=" {% url 'account_login' %}"
+                       class="btn-lg btn-block btn-success center">
+                        <i class="icon-shopping-cart"></i> Add to cart</a>
+                    {% endif %}
+                </div>
+		</div>
+       </div>
+    </div>
     {% endif %}
 {% endblock content %}
+

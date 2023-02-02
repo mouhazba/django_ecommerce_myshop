@@ -1,0 +1,21 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block title %}Home{% endblock title %}
+{% block content %}
+	<div class="row">
+		{% for p in list_products %}
+		<div class="col-lg-4">
+			<img class="thumbnail" src="{{p.image.url}}" alt="{{p.name}}">
+			<div class="box-element product">
+				<h6><strong>{{p.name}}</strong></h6>
+				<hr>
+				<a class="btn btn-outline-success" href="{{ p.get_absolute_url }}">View</a>
+				<h4 style="display: inline-block; float: right"><strong>${{p.price}}</strong></h4>
+            </div>
+
+		</div>
+		{% endfor %}
+        
+	</div>
+
+{% endblock content %}

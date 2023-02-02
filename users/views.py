@@ -2,20 +2,18 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from .models import Managers
 
-#necessaire pour recuerer Managers dans model
-""" 
+
 def signup(request):
-    form = UserForm()
     if request.method == "POST":
+        email = request.POST['email']
         username = request.POST['username']
         password = request.POST['password']
-        user = Managers.objects.create_user(username=username, password=password)
+        user = Managers.objects.create_user(email=email, username=username, password=password)
         login(request, user)
         return redirect('home')
 
-    return render(request, 'signup.html', {'form': form})
+    return render(request, 'signup.html')
 
-"""
 """
  LOGIN_REDIRECT_URL = 'home' equivalent à
 def login_user(request):
